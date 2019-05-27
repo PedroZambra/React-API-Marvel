@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-
+import shield from './img/shield.png'
+import Character from './Components/Character.js';
 
 class AppMarvel extends React.Component{
   constructor(props){
@@ -9,14 +10,15 @@ class AppMarvel extends React.Component{
       characters: [],
       search:''
     }
+    this.updateSearch = this.updateSearch.bind(this);
   }
 
   componentDidMount(){
     fetch('https://gateway.marvel.com:443/v1/public/characters?orderBy=-modified&limit=50&apikey=3807b873586a20c861ef6a4be192963a')
     .then(res => res.json())
     .then(character => {
-      // console.log(character);
-        this.setState({ characters: character.data.results}) 
+      console.log(character.data.results);
+      this.setState({ characters: character.data.results}) 
     })
   }
 
@@ -26,8 +28,6 @@ class AppMarvel extends React.Component{
   }
 
   render(){
-    console.log( this.state.characters)
-
     //FILTER
     let filterCharacter = this.state.characters.filter(
       (hero) => {return hero.name.toLowerCase().indexOf(this.state.search.toLowerCase())!== -1}
@@ -39,7 +39,7 @@ class AppMarvel extends React.Component{
           <header>
             <h1>MARVEL</h1>
           </header>
-          <input type="search" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="Buscador" id="search"/>
+          <input type="search" value={this.state.search} onChange={this.updateSearch} placeholder="Buscador" id="search"/>
           <div className="container">
             {filterCharacter.map((pj, index) => <Character key={index} name={pj.name} photo={pj.thumbnail.path} ext={pj.thumbnail.extension} shop={pj.urls[0].url}/>)}
           </div>
@@ -48,20 +48,12 @@ class AppMarvel extends React.Component{
       )
     }
     return(
-      <p>Cargando...</p>
+      <div className="load">
+        <img src={shield} className="shield"/>
+        <h1>Cargando <span className="points">...</span></h1>
+      </div>
     )
   }
 }
-
-const Character = (props) =>(
-    <div className="hero">
-      <a href={props.shop} target="_blank" title="Web">
-        <h2>{props.name}</h2>
-        {/* {console.log(props.photo)}  */}
-        <img src={`${props.photo}.${props.ext}`} alt="Personaje"/>
-      </a>
-    </div>
-)
-
 
 export default AppMarvel;

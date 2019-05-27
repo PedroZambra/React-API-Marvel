@@ -1,23 +1,23 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 
-header{
+header {
   width: 100%;
   height: 100px;
   background-color: red;
   box-shadow: 0 2px 4px #000;
 }
 
-.container{
+.container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
  
 }
 
-.hero{
+.hero {
   width:500px;
   margin: 20px;
   border: 1px solid #000;
@@ -27,19 +27,19 @@ header{
   transition: all 0.4s;
 }
 
-.hero:hover{
+.hero:hover {
   background-color: #000;
 }
 
-.hero:hover img{
+.hero:hover img {
   border: 1px solid #FFF;
 }
 
-.hero:hover a{
+.hero:hover a {
   color: #FFF;
 }
 
-#search{
+#search {
   display: block;
   margin: 25px auto;
   width: 200px;
@@ -47,24 +47,24 @@ header{
   transition: transform 0.6s;
 }
 
-#search:focus{
+#search:focus {
   transform: scale(1.2)
 }
 
-h1{
+h1 {
   line-height: 100px;
   text-align:center;
   color: white;
   text-shadow: 2px 2px 3px #000;
 }
 
-h2{
+h2 {
   margin: 25px 0;
   text-align: center;
   font-variant: small-caps;
 }
 
-img{
+.hero img {
   width: 300px;
   display: block;
   margin: 0 auto 25px auto; 
@@ -72,7 +72,35 @@ img{
   border-radius: 10px;
 }
 
-a{
+a {
   text-decoration: none;
   color: #000;
+}
+
+/* LOADING */
+.load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.load h1 {
+  text-shadow: 2px 2px 3px red;
+}
+
+.points {
+  color: red;
+}
+
+.shield {
+  width: 205px;
+  animation: pulse 1s infinite linear;
+}
+
+@keyframes pulse{
+  0% {transform: scale(1)}
+  50% {transform: scale(1.1)}
+  100% {transform: scale(1)}
 }
