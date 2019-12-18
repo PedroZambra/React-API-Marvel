@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
+
+const Img = lazy(() => import("./Img.js"));
 
 const Character = (props) =>(
             <div className="hero">
-                <a href={props.shop} target="_blank" title="Web">
+                <a href={props.shop} target="_blank" rel="noopener noreferrer" title="Web">
                     <h2>{props.name}</h2>
-                    {/* {console.log(props.photo)}  */}
-                    <img src={`${props.photo}.${props.ext}`} alt="Personaje"/>
+                    <Suspense fallback={<span>Loading...</span>}>
+                        <Img photo={props.photo} ext={props.ext}/>
+                    </Suspense>
                 </a>
             </div>
 )
