@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import firebase from 'firebase';
 
 var firebaseConfig = {
-    apiKey: process.env.REACT_APP_API_KEY_FIREBASE,
+    apiKey: "AIzaSyDcv89QYQrDAKoJITvjXWt5qY4LfiLxl1E",
     authDomain: "react-marvel-fee32.firebaseapp.com",
     databaseURL: "https://react-marvel-fee32.firebaseio.com",
     projectId: "react-marvel-fee32",

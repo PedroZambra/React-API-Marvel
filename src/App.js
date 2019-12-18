@@ -16,8 +16,7 @@ class AppMarvel extends React.Component{
   }
 
   componentDidMount(){
-    let apiKey = process.env.REACT_APP_API_KEY_MARVEL;
-    fetch('https://gateway.marvel.com:443/v1/public/characters?orderBy=-modified&limit=50&apikey='+apiKey)
+    fetch('https://gateway.marvel.com:443/v1/public/characters?orderBy=-modified&limit=50&apikey=3807b873586a20c861ef6a4be192963a')
     .then(res => res.json())
     .then(character => {
       // console.log(character.data.results);
