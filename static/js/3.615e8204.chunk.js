@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{14:function(n,t,e){"use strict";e.r(t);var c=e(0),o=e.n(c);t.default=function(n){return o.a.createElement("img",{src:"".concat(n.photo,".").concat(n.ext),alt:"Personaje"})}}}]);
+//# sourceMappingURL=3.615e8204.chunk.js.map
