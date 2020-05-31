@@ -1,51 +1,42 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
+
+import Header from './components/Header.js';
+import Character from './components/Character.js';
+import getCharacters from './services/getCharacters';
 import shield from './img/shield.png'
 
-import Header from './Components/Header.js';
-import Character from './Components/Character.js';
+function AppMarvel() {
+  const [characters, setCharacters] = useState([])
+  const [keyword, setKeyword] = useState('')
 
-class AppMarvel extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      characters: [],
-      search:''
-    }
-    this.updateSearch = this.updateSearch.bind(this);
+  useEffect(function() {  
+    getCharacters().then(characters => setCharacters(characters))
+  }, [])
+
+  const handleSearch = event => {
+    setKeyword(event.target.value)
   }
 
-  componentDidMount(){
-    fetch('https://gateway.marvel.com:443/v1/public/characters?orderBy=-modified&limit=50&apikey=3807b873586a20c861ef6a4be192963a')
-    .then(res => res.json())
-    .then(character => {
-      // console.log(character.data.results);
-      this.setState({ characters: character.data.results}) 
-    })
-  }
+  const handleFilterCharacter = characters.filter( hero => {
+    return hero.name.toLowerCase().indexOf(keyword.toLowerCase())!== -1
+  })
 
-  //SEARCH
-  updateSearch(event){
-    this.setState({search:event.target.value.substr(0,30)});
-  }
-
-  render(){
-    //FILTER
-    let filterCharacter = this.state.characters.filter(
-      (hero) => {return hero.name.toLowerCase().indexOf(this.state.search.toLowerCase())!== -1}
-    );
-    
-    if(this.state.characters.length>0){
-      return(
-        <div>
-          <Header/>
-          <input type="search" value={this.state.search} onChange={this.updateSearch} placeholder="Buscador" id="search"/>
+  if(characters.length>0){
+    return (
+      <div>
+        <Header/>
+        <section>
+          <form>
+            <input type="search" value={keyword} onChange={handleSearch} placeholder="Buscador" id="search"/>
+          </form>
           <div className="container">
-            {filterCharacter.map((pj, index) => <Character key={index} name={pj.name} photo={pj.thumbnail.path} ext={pj.thumbnail.extension} shop={pj.urls[0].url}/>)}
+            {handleFilterCharacter.map((getCharacter) => Character(getCharacter))}
           </div>
-        </div>
-      )
-    }
+        </section>
+      </div>
+    )
+  } else {
     return(
       <div className="load">
         <img src={shield} className="shield" alt=""/>
