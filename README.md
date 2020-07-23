@@ -1,3 +1,8 @@
+Web con React Hooks utilizando la api oficial de marvel con filtro de personajes y desplegada en GitHub pages. <br>
+Deploy: https://pedrozambra.github.io/React-API-Marvel/ <br>
+<br>
+<img src="/docs/react-marvel.png">
+<hr/>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
